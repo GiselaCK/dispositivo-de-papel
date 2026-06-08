@@ -19,7 +19,7 @@ O processo de fabricação seguiu as seguintes etapas:
    
 A introdução de microfissuras foi inspirada em sensores piezoresistivos baseados em trincas descritos por Kang et al. (2014). Essas descontinuidades atuam como regiões críticas para o transporte de cargas, de modo que pequenas deformações mecânicas alteram a conectividade entre os caminhos condutivos e produzem variações significativas na resistência elétrica, aumentando a sensibilidade do dispositivo (KANG et al., 2014).
 
-A operação do dispositivo baseia-se na variação da resistência elétrica da camada de grafite em resposta a estímulos mecânicos aplicados sobre a área ativa. A fita adesiva atua como máscara geométrica, garantindo uma área efetiva constante de medição, enquanto os eletrodos de tinta de prata minimizam a resistência de contato e asseguram maior reprodutibilidade das medidas.
+A operação do dispositivo baseia-se na variação da resistência elétrica da camada de grafite em resposta a estímulos mecânicos aplicados sobre a área ativa. .
 
 ### Especificações do dispositivo
 
