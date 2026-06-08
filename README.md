@@ -38,6 +38,15 @@ A operação do dispositivo baseia-se na variação da resistência elétrica da
 
 
 ## Medidas
+As análises exploraram três texturas: PARAFILM®, papel texturizado e lixa, com quatro dispositivos dedicados a cada uma. As medições elétricas foram conduzidas no Analisador de Parâmetros Keithley SourceMeter, com auxílio de uma balança para ter noção da força/pressão aplicada na amostra. Para cada dispostivo, seguiu-se os seguintes passos:
+
+1. Medição de corrente em função da diferença de potencial aplicada, para um intervalo de 0 a 1 V, aumentando e depois diminuindo os valores;
+2. Extração dos valores de corrente em 0.5 V (ida e volta) para utilizar sua média como referência (I_ref);
+3. Medição dos valores de corrente pelo tempo, aplicando 0.5 V de tensão, durante 1 min. Começando sem pressionar, a cada 10 s, realizou-se uma pressão que aumentasse em 100 g a massa indicada na balança, obtendo valores em uma faixa de 0 a 500 g.
+
+O passo 3 foi gravado em celular para registrar os valores de massa em função do tempo. Porém, como o processo era totalmente dependente do operador, houveram muitas imprecisões atreladas a variação da pressão. 
+
+Os dados foram armazenados localmente no formato `.csv` e repassados às alunas por repositório interno.
 
 ## Tratamento de dados
 
