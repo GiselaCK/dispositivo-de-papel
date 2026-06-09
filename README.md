@@ -146,6 +146,33 @@ Os dados brutos são séries temporais. Em vez de classificar instantes individu
   
 O modelo foi treinado por 300 épocas com o otimizador Adam (`lr = 1e-3`) e a função de perda `ce_count_loss` da biblioteca snnTorch, que aplica entropia cruzada sobre a contagem de pulsos dos neurônios de saída ao longo da janela temporal. A classificação final corresponde à classe cujo neurônio acumulou o maior número de pulsos (ESHRAGHIAN _et al_, 2023). 
 
+#### Discussão e resultados
+
+1. Contexto do problema
+
+Os dados utilizados são medidas experimentais de dispositivos de papel submetidos a variações de massa e corrente elétrica. Por serem experimentais, apresentam ruído inerente e quantidade limitada de amostras — 12 dispositivos, totalizando aproximadamente 1560 pontos antes do janelamento. As medições não foram realizadas em condições ideais, o que amplifica o ruído e contribui para a sobreposição entre classes no espaço de features. Portanto, a acurácia absoluta não é o único critério relevante de avaliação, mas também são critérios importantes a consistência entre treino e validação e o comportamento por classe.
+
+2. Desempenho
+
+A acurácia global no conjunto de teste foi de 45%, contra 33% esperado para um classificador aleatório de três classes — confirmando que a rede aprendeu estrutura nos dados, ainda que de forma modesta. As curvas de perda convergem juntas ao longo das 300 épocas, sem divergência sistemática entre treino e validação, o que indica ausência de overfitting significativo.
+
+A análise por classe revela comportamentos distintos. A classe 0 (papel filme) apresenta alta revocação (79%), mas baixa precisão (39%): a rede a identifica com frequência, mas também classifica erroneamente amostras de outras classes como papel filme. A classe 1 (papel texturizado) tem o comportamento oposto — maior precisão (65%), mas baixa revocação (33%). A classe 2 (lixa) apresenta o pior desempenho em ambas as métricas (F1 = 0,34).
+
+A matriz de confusão evidencia o padrão central de erro: as classes 1 e 2 são sistematicamente atraídas para a classe 0. Das 52 amostras reais de papel texturizado, 26 foram classificadas como papel filme — mais do que as 17 classificadas corretamente. Das 55 amostras de lixa, 33 foram classificadas como papel filme. Esse comportamento sugere que o papel filme ocupa uma região central ou difusa no espaço `variacao_relativa` × `massa_g`, tornando-se o destino preferencial para amostras ambíguas.
+
+3. Escolha da arquitetura
+
+A SNN foi escolhida por sua compatibilidade natural com dados temporais (ESHRAGHIAN _et al_, 2023): os neurônios LIF integram a informação ao longo dos `T = 20` passos de cada janela, acumulando evidência antes de emitir um pulso. Isso é uma vantagem sobre a MLP clássica, que trata cada janela como um vetor estático sem considerar a ordem dos instantes. O parâmetro `β = 0,9` implica uma constante de tempo relativamente longa — os neurônios retêm memória de aproximadamente 10 instantes anteriores com peso relevante — o que é adequado para janelas de 20 pontos.
+
+4. Limitações
+
+A principal limitação é o espaço de features reduzido (SVOBODA _et al_, 2025): com apenas `variacao_relativa` e `massa_g`, a separação entre classes depende inteiramente de dois atributos que, dado o ruído experimental, não oferecem fronteiras de decisão nítidas. A perda final (~0,95) ainda próxima de `ln(3) ≈ 1,099` é indicativa dessa sobreposição.
+
+5. Perspectivas
+
+Para trabalhos futuros, pretende-se aprimorar a montagem experimental a fim de reduzir o ruído nas medições e aumentar a quantidade de amostras por classe, ampliando a base de dados disponível para o treinamento. Em paralelo, pretende-se explorar a inclusão de features derivadas da série temporal — como média, desvio padrão e taxa de variação dentro da janela — e investigar o efeito de diferentes valores de β e tamanhos de janela sobre o desempenho da SNN.
+
+
 ## Conclusão
 
 ## Referências
