@@ -50,6 +50,28 @@ Os dados foram armazenados localmente no formato `.csv` e repassados às alunas 
 
 ## Tratamento de dados
 
+
+O tratamento dos dados foi realizado em três etapas sequenciais implementadas em notebooks Python: cálculo da variação relativa de corrente, adição dos valores de massa por OCR e rotulação das amostras.
+
+### 1. Extração da Variação Relativa de Corrente (`tocsv`)
+
+Cada amostra possui arquivos `.xls` contendo curvas corrente × tensão (I-V) e corrente × tempo (I-t).
+
+A corrente de referência `I₀` foi definida como a média dos valores de corrente medidos em `V = 0,500 V` durante as varreduras de subida e descida da curva I-V, reduzindo efeitos de histerese. A partir desse valor, foi calculada a variação relativa de corrente para cada instante da curva I-t:
+
+```math
+\frac{\Delta I}{I_0}=\frac{I(t)-I_0}{I_0}
+```
+A variação relativa de corrente foi usada devido a diferença de resistividade entre os diferentes dispositivos fabricados, a fim de evitar que a resistividade intrínseca do dispositivo impactasse na classificação de textura. 
+
+Os resultados foram armazenados em arquivos `VariacaoRelativa_Amostra{N}.csv`, contendo as colunas:
+
+- `tempo`
+- `corrente`
+- `tensao`
+- `variacao_relativa`
+
+
 ## Construção das redes
 
 ### MLP simples
