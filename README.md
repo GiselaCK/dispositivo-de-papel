@@ -73,7 +73,7 @@ Os resultados foram armazenados em arquivos `VariacaoRelativa_Amostra{N}.csv`, c
 
 ### 2. Adição dos Valores de Massa (`adicionamassa`)
 
-A massa aplicada aos dispositivos foi registrada por uma balança cujo visor foi filmado em vídeos `video_{N}.mp4`. Como não havia saída digital da balança, foi desenvolvido um pipeline de visão computacional para extrair automaticamente os valores de massa.
+A massa aplicada aos dispositivos foi registrada por uma balança cujo visor foi filmado em vídeos `video_{N}.mp4`. Como não havia saída digital da balança, foi desenvolvido um pipeline de visão computacional para extrair automaticamente os valores de massa com base na documentação da biblioteca de python OCR (Optical Character Recognition) (PYTHON-OCR, 2020).
 
 Para cada instante de tempo presente nos CSVs:
 
