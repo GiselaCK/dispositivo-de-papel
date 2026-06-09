@@ -50,7 +50,6 @@ Os dados foram armazenados localmente no formato `.csv` e repassados às alunas 
 
 ## Tratamento de dados
 
-
 O tratamento dos dados foi realizado em três etapas sequenciais implementadas em notebooks Python: cálculo da variação relativa de corrente, adição dos valores de massa por OCR e rotulação das amostras.
 
 ### 1. Extração da Variação Relativa de Corrente (`tocsv`)
@@ -123,6 +122,21 @@ Após o processamento, cada registro contém as colunas `variacao_relativa`, `ma
 ## Construção das redes
 
 ### MLP simples
+#### Arquitetura 
+Para o problema de classificação de três texturas a partir de duas features, optou-se por uma arquitetura simples de Multi-Layer Perceptron (MLP). A rede foi construída em PyTorch, com camadas lineares, ativações ReLU e Dropout como regularização, seguindo a progressão 2 → 32 → 16 → 3 neurônios, estabelecendo uma expansão inicial para enriquecer as representações internas, seguida de compressão até as três classes de saída. 
+
+#### Estratégia de Janelas Temporais
+O procedimento experimental registrou a variação da corrente elétrica em função da pressão aplicada ao longo do tempo, o que motivou o agrupamento dos dados em janelas temporais de 20 pontos para tentar capturar essa dinâmica. No entanto, como MLPs não lidam nativamente com dados sequenciais, precisando realizar o colapso da dimensão temporal, apenas uma representação média do intervalo foi mantida.
+
+#### Treinamento
+O modelo foi treinado por 300 épocas com o otimizador Adam (`lr = 1e-3`) e a função de perda `CrossEntropyLoss`. A classificação final foi avaliada por métricas de acurácia, relatório de classificação e matriz de confusão. 
+
+#### Resultados e discussões
+O modelo MLP foi treinado para classificar três texturas — Parafilm, Papel Texturizado e Lixa — a partir da variação relativa da corrente e da massa aplicada, atingindo acurácia de 45,45%, superior ao nível aleatório de 33%, mas sem diferenciação expressiva. O relatório de classificação revelou desempenho heterogêneo: a Lixa obteve o melhor F1-score (0.54), o Papel Texturizado apresentou _precision_ alta, mas _recall_ baixo, e o Parafilm teve o pior desempenho em todas as métricas (F1 = 0.21). A matriz de confusão reforçou essas tendências.
+
+Diversas estratégias foram exploradas durante o desenvolvimento — seleção de features, normalização, regularização por Dropout e análise do split por dispositivo, porém o desempenho permaneceu limitado. A raiz do problema está nos dados experimentais: com apenas 4 dispositivos por textura e sobreposição significativa dos valores elétricos entre as classes, o modelo não tem exemplos suficientes para distinguir o que é intrínseco à textura do que é variabilidade de fabricação.
+
+Os resultados indicam que a abordagem é promissora, mas requer uma base experimental mais ampla. Com a reelaboração da metodologia e a coleta de novos dispositivos, acredita-se que a arquitetura simples poderia correlacionar medições elétricas com características do material com amior confiança.
 
 ### SNN com arquitetura MLP
   
@@ -195,12 +209,9 @@ O trabalho demonstrou a viabilidade de um pipeline completo que integra um senso
           <a href="https://github.com/drcassar"><b>Prof. Dr. Daniel R. Cassar<b></a>
       </a>
     </td>
-    <td align="center">
-      <a href="#" title="Prof. Leandro das Merces Silva">
-      </a>
-    </td>
-  </tr>
 </table>
+
+Prof. Leandro das Merces Silva
 
 ---
 ## Contribuições da equipe
