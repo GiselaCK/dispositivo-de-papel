@@ -5,6 +5,12 @@ Este projeto investiga o uso de um **dispositivo físico construído em papel co
 
 ---
 ## Introdução e objetivos
+Habilidades e sensações humanas são uma forte base para o desenvolvimento de dispositivos diversos (YU, H. _et al_., 2023).  A compreensão atual sobre como os mecanismos táteis do nosso corpo funcionam, com forte correlação entre pressão e transmissão de sinais elétricos, permite a criação de sistemas que mimetizam e captam as percepções desse processo. Nesse contexto, dispositivos de papel com grafite são apresentados no artigo _Ultra-low cost and high-performance paper-based flexible pressure sensor for artificial intelligent E-skin_ (CHEN, Y. et al., 2022) como uma pele artificial capaz de distinguir texturas e padrões de forma "inteligente". A motivação inicial do projeto aqui descrito parte das concepções e metodologias desse trabalho.
+
+Para interpretar os dados obtidos artificialmente, é preciso estabelecer correlações entre as medições realizadas e as classes analisadas. As redes neurais se destacam nesse aspecto pela sua capacidade de aprender com os padrões presentes nas informações fornecidas (YU, L.; LIU, D., 2024.). Dependendo do problema analisado, uma arquitetura pode resolver melhor o problema do que outra, tornando a comparação entre elas, com métricas adequadas, proveitosa para entender as vantagens e desvantagens de cada modelo.
+
+Portanto, este trabalho buscou desenvolver dispositivos de papel com grafite de sensibilidade destacada, por meio da criação de microfissuras (_microcracks_), para identificar três texturas: Parafilm, Papel Texturizado e Lixa. A partir da medição da corrente acompanhada pela variação da pressão aplicada à amostra fixada acima do dispositivo, foi verificada a variação do parâmetro elétrico relativo para cada conjunto dispositivo-textura. Os dados obtidos foram utilizados como entradas de duas redes neurais, MLP e SNN, com o intuito de elucidar se seria possível reconhecer texturas pelo sistema experimental elaborado.
+
 
 ## Fabricação do dispositivo
 O dispositivo foi fabricado sobre um substrato de papel filtro 80 g/m² com dimensões de 6 cm × 3 cm. A região sensora foi obtida por deposição manual de grafite utilizando lápis 6B, devido à sua elevada condutividade elétrica e boa aderência ao papel. A deposição repetida promove a formação de uma rede condutiva contínua, aumentando os caminhos para o transporte eletrônico (KIM _et al_, 2021).
@@ -191,7 +197,9 @@ Para trabalhos futuros, pretende-se aprimorar a montagem experimental a fim de r
 O trabalho demonstrou a viabilidade de um pipeline completo que integra um sensor resistivo de grafite em papel, processamento de sinais experimentais e classificação por MLP e SNN. Mesmo em um cenário com ruído experimental e dados limitados, o modelo foi capaz de aprender padrões relevantes acima do nível aleatório. Entretanto, o desempenho foi limitado pela baixa dimensionalidade das features e pelas incertezas no processo de aquisição dos dados. Conclui-se que a abordagem é promissora para aplicações em sensores físicos de baixo custo, mas depende de melhorias na qualidade experimental e na ampliação do conjunto de atributos e amostras para melhor separação entre classes.
 
 ## Referências
-
+- YU, H. et al. Biomimetic Flexible Sensors and Their Applications in Human Health Detection. Biomimetics, v. 8, n. 3, p. 293–293, 6 jul. 2023.
+- CHEN, Y. et al. Ultra-low cost and high-performance paper-based flexible pressure sensor for artificial intelligent E-skin. Chemical Engineering Journal, v. 499, p. 156293, nov. 2024.
+- YU, L.; LIU, D. Recent Progress in Tactile Sensing and Machine Learning for Texture Perception in Humanoid Robotics. Interdisciplinary materials, 30 dez. 2024.
 - ESHRAGHIAN, Jason K et al. Training spiking neural networks using lessons from deep learning. arXiv preprint, arXiv:2109.12894v6, 2023. Disponível em: https://arxiv.org/abs/2109.12894. Acesso em: 07 jun. 2026.
 - SVOBODA, Kama; ADEGBIJA, Tosiron. Spiking Neural Network Architecture Search: A Survey. arXiv preprint, arXiv:2510.14235, 2025. Disponível em: https://arxiv.org/abs/2510.14235. Acesso em: 07 jun. 2026.
 - PYTHON-OCR. Python OCR package. 2020. Disponível em: https://pypi.org/project/python-ocr/. Acesso em: 04 jun. 2026.
