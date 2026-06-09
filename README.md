@@ -174,6 +174,7 @@ Para trabalhos futuros, pretende-se aprimorar a montagem experimental a fim de r
 
 
 ## Conclusão
+O trabalho demonstrou a viabilidade de um pipeline completo que integra um sensor resistivo de grafite em papel, processamento de sinais experimentais e classificação por MLP e SNN. Mesmo em um cenário com ruído experimental e dados limitados, o modelo foi capaz de aprender padrões relevantes acima do nível aleatório. Entretanto, o desempenho foi limitado pela baixa dimensionalidade das features e pelas incertezas no processo de aquisição dos dados. Conclui-se que a abordagem é promissora para aplicações em sensores físicos de baixo custo, mas depende de melhorias na qualidade experimental e na ampliação do conjunto de atributos e amostras para melhor separação entre classes.
 
 ## Referências
 
