@@ -183,3 +183,49 @@ O trabalho demonstrou a viabilidade de um pipeline completo que integra um senso
 - PYTHON-OCR. Python OCR package. 2020. Disponível em: https://pypi.org/project/python-ocr/. Acesso em: 04 jun. 2026.
 - KIM, Junseo et al. Vertically and Horizontally Drawing Formation of Graphite Pencil Electrodes on Paper by Frictional Sliding for a Disposable and Foldable Electronic Device. ACS Omega, v. 6, n. 3, p. 1960–1970, 2020. Disponível em: https://doi.org/10.1021/acsomega.0c04792. Acesso em: 28 mai. 2026.
 - KANG, Daeshik et al. Ultrasensitive mechanical crack-based sensor inspired by the spider sensory system. Nature, v. 516, p. 222–226, 2014. Disponível em: https://doi.org/10.1038/nature14002. Acesso em: 28 mai. 2026.
+
+---
+## Professores orientadores
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#" title="Prof. Daniel R. Cassar">
+        <img src="https://avatars.githubusercontent.com/u/9871905?v=4" width="100px;" alt="Foto do Daniel do Github"/><br>
+          <a href="https://github.com/drcassar"><b>Prof. Dr. Daniel R. Cassar<b></a>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="Prof. Leandro das Merces Silva">
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
+## Contribuições da equipe
+<table>
+  <tr>
+    <td align="center">
+      <a href="#" title="Gisela C. Kassick">
+        <img src="https://avatars.githubusercontent.com/u/164672308?v=4" width="100px;" alt="Foto da Gisela no Github"/><br>
+        <a href="https://github.com/GiselaCK"><b>Gisela C. Kassick</b></a>
+      </a>
+    </td>
+        <td align="center">
+      <a href="#" title="Lívia Maria Aragão">
+        <img src="https://avatars.githubusercontent.com/u/164672308?v=4" width="100px;" alt="Foto da Giulia no Github"/><br>
+        <a href="https://github.com/LiviaMBAragao"><b>Lívia M. B. Aragão</b></a>
+      </a>
+    </td>
+  </tr>
+</table>
+
+
+- Gisela C. Kassick: construção da SNN
+- Lívia M. B. Aragão: construção das MLPs
+
+A coleta e tratamento de dados foram feitos em conjunto pelo grupo.
+
+  
+
