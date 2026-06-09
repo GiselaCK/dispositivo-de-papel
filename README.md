@@ -71,6 +71,54 @@ Os resultados foram armazenados em arquivos `VariacaoRelativa_Amostra{N}.csv`, c
 - `tensao`
 - `variacao_relativa`
 
+## 2. Adição dos Valores de Massa (`adicionamassa`)
+
+A massa aplicada aos dispositivos foi registrada por uma balança cujo visor foi filmado em vídeos `video_{N}.mp4`. Como não havia saída digital da balança, foi desenvolvido um pipeline de visão computacional para extrair automaticamente os valores de massa.
+
+Para cada instante de tempo presente nos CSVs:
+
+1. O frame correspondente foi localizado utilizando o FPS do vídeo.
+2. A região do visor da balança foi recortada por uma ROI previamente definida.
+3. O valor numérico foi extraído utilizando EasyOCR.
+
+Foram aplicadas diferentes estratégias de pré-processamento até a obtenção de uma leitura válida, incluindo:
+
+- binarização fixa;
+- binarização por Otsu;
+- segmentação HSV dos dígitos vermelhos;
+- dilatação morfológica;
+- CLAHE seguido de binarização.
+
+O OCR foi executado com caracteres restritos a números e ponto decimal.
+
+Como o protocolo experimental utilizava degraus discretos de massa (0, 100, 200, 300, 400 e 500 g), leituras com erro superior a 80 g foram corrigidas utilizando a massa esperada para a respectiva janela temporal ou o valor válido mais próximo.
+
+Além da massa final, foram armazenados campos de auditoria:
+
+- `ocr_bruto`
+- `estrategia`
+- `correcao`
+
+Os resultados foram salvos em `Completo_Amostra{N}.csv`, combinando os valores de variação relativa e massa.
+
+Vale ressaltar que, devido às limitações da montagem experimental, a leitura dos valores da balança apresentou baixa acurácia, sendo necessária a substituição de diversas medições pelo valor esperado com base no protocolo experimental, a fim de reduzir erros de aquisição.
+
+## 3. Rotulação das Amostras (`rotulando`)
+
+Os arquivos completos foram rotulados de acordo com a superfície do dispositivo:
+
+| Amostras | Rótulo | Classe |
+|-----------|---------|---------|
+| 1–4 | 0 | Papel filme |
+| 5–8 | 1 | Papel texturizado |
+| 9–12 | 2 | Lixa |
+
+A coluna `rotulo` foi adicionada a cada arquivo CSV.
+
+## Dataset Final
+
+Após o processamento, cada registro contém as colunas `variacao_relativa`, `massa_g` e `rotulo`, entre as outras citadas anteriormente nesta seção. As três colunas referenciadas foram utilizadas para a geração das janelas temporais e treinamento da rede neural.
+
 
 ## Construção das redes
 
