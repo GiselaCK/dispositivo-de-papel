@@ -125,3 +125,32 @@ Após o processamento, cada registro contém as colunas `variacao_relativa`, `ma
 ### MLP simples
 
 ### SNN com arquitetura MLP
+  
+#### Arquitetura da SNN 
+  
+A rede neural de pulsos (SNN) implementada segue uma topologia totalmente conectada com três blocos sequenciais, cada um composto por uma camada linear seguida de um neurônio *Leaky Integrate-and-Fire* (LIF): 
+  
+``` 
+Entrada (2) → Linear(2→32) → LIF → Linear(32→16) → LIF → Linear(16→3) → LIF 
+``` 
+  
+Os dois atributos de entrada são a variação relativa de corrente (`variacao_relativa`) e a massa depositada sobre o dispositivo (`massa_g`). A saída possui três neurônios, correspondentes às classes papel filme (0), papel texturizado (1) e lixa (2). 
+  
+O neurônio LIF modela de forma simplificada a dinâmica de um neurônio biológico: o potencial de membrana integra a corrente recebida e decai exponencialmente entre passos temporais com fator `β = 0,9`. Quando o potencial supera o limiar, o neurônio emite um pulso binário (*spike*) e seu potencial é reiniciado. O fator `β = 0,9` implica uma constante de tempo relativamente longa — o neurônio retém memória relevante de aproximadamente 10 instantes anteriores — o que é adequado para janelas de 20 passos temporais. 
+  
+#### Janelas temporais 
+  
+Os dados brutos são séries temporais. Em vez de classificar instantes individuais, a rede recebe janelas deslizantes de 20 pontos consecutivos (`JANELA = 20`, `PASSO = 1`), o que permite à SNN integrar a evolução temporal do sinal antes de emitir uma classificação. Essa escolha é uma vantagem arquitetural da SNN em relação à MLP clássica, que trataria cada janela como um vetor estático sem considerar a ordem dos instantes. 
+  
+#### Treinamento 
+  
+O modelo foi treinado por 300 épocas com o otimizador Adam (`lr = 1e-3`) e a função de perda `ce_count_loss` da biblioteca snnTorch, que aplica entropia cruzada sobre a contagem de pulsos dos neurônios de saída ao longo da janela temporal. A classificação final corresponde à classe cujo neurônio acumulou o maior número de pulsos. 
+
+## Conclusão
+
+## Referências
+
+- ESHRAGHIAN, Jason K et al. Training spiking neural networks using lessons from deep learning. arXiv preprint, arXiv:2109.12894v6, 2023. Disponível em: https://arxiv.org/abs/2109.12894. Acesso em: 07 jun. 2026.
+- SVOBODA, Kama; ADEGBIJA, Tosiron. Spiking Neural Network Architecture Search: A Survey. arXiv preprint, arXiv:2510.14235, 2025. Disponível em: https://arxiv.org/abs/2510.14235. Acesso em: 07 jun. 2026.
+- PYTHON-OCR. Python OCR package. 2020. Disponível em: https://pypi.org/project/python-ocr/. Acesso em: 04 jun. 2026.
+
