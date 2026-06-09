@@ -71,7 +71,7 @@ Os resultados foram armazenados em arquivos `VariacaoRelativa_Amostra{N}.csv`, c
 - `tensao`
 - `variacao_relativa`
 
-## 2. Adição dos Valores de Massa (`adicionamassa`)
+### 2. Adição dos Valores de Massa (`adicionamassa`)
 
 A massa aplicada aos dispositivos foi registrada por uma balança cujo visor foi filmado em vídeos `video_{N}.mp4`. Como não havia saída digital da balança, foi desenvolvido um pipeline de visão computacional para extrair automaticamente os valores de massa.
 
@@ -103,7 +103,7 @@ Os resultados foram salvos em `Completo_Amostra{N}.csv`, combinando os valores d
 
 Vale ressaltar que, devido às limitações da montagem experimental, a leitura dos valores da balança apresentou baixa acurácia, sendo necessária a substituição de diversas medições pelo valor esperado com base no protocolo experimental, a fim de reduzir erros de aquisição.
 
-## 3. Rotulação das Amostras (`rotulando`)
+### 3. Rotulação das Amostras (`rotulando`)
 
 Os arquivos completos foram rotulados de acordo com a superfície do dispositivo:
 
@@ -115,7 +115,7 @@ Os arquivos completos foram rotulados de acordo com a superfície do dispositivo
 
 A coluna `rotulo` foi adicionada a cada arquivo CSV.
 
-## Dataset Final
+### Dataset Final
 
 Após o processamento, cada registro contém as colunas `variacao_relativa`, `massa_g` e `rotulo`, entre as outras citadas anteriormente nesta seção. As três colunas referenciadas foram utilizadas para a geração das janelas temporais e treinamento da rede neural.
 
