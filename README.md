@@ -1,7 +1,7 @@
 # Dispositivo de Papel com Grafite para Classificação de Texturas a partir de Redes Neurais
 
 ## Visão Geral
-Este projeto investiga o uso de um **dispositivo físico construído em papel com grafite condutivo** como sensor resistivo para captura de sinais elétricos associados a diferentes texturas. Os sinais obtidos são processados computacionalmente e utilizados para treinar modelos de Machine Learning, com foco em classificação de padrões físicos.
+Este projeto investiga o uso de um **dispositivo físico construído em papel com grafite condutivo** como sensor resistivo para captura de sinais elétricos associados a diferentes texturas. Os sinais obtidos são processados computacionalmente e utilizados para treinar modelos de Machine Learning, com foco em classificação de padrões físicos. Como segunda frente, o projeto passa a incluir o Processamento de Linguagem Natural de _abstracts_ de artigos sobre _e-skin_, com foco na extração dos principais materiais trabalhados na área. 
 
 ---
 ## Introdução e objetivos
